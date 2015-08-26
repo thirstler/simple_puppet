@@ -1,0 +1,14 @@
+{
+  "name": "jjr-autohome",
+  "version": "1.0.0",
+  "author": "jjr",
+  "summary": "Configures autofs to mount an NFS home dir",
+  "license": "Apache 2.0",
+  "source": "https://github.com/thirstler/simple_puppet",
+  "project_page": "https://github.com/thirstler/simple_puppet",
+  "issues_url": "https://github.com/thirstler/simple_puppet",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+

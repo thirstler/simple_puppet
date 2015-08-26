@@ -1,0 +1,16 @@
+/var/log/hosts/*/cron
+/var/log/hosts/*/maillog
+/var/log/hosts/*/messages
+/var/log/hosts/*/secure
+/var/log/hosts/*/spooler
+/var/log/hosts/*/audit.log
+{
+    weekly
+    rotate <%= retention_weeks %> 
+    <% if compress_logs == true %>compress<% end %>
+    sharedscripts
+    missingok
+    postrotate
+        /bin/kill -HUP `cat /var/run/syslogd.pid 2> /dev/null` 2> /dev/null || true
+    endscript
+}

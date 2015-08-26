@@ -1,0 +1,6 @@
+active = <% if @audit_to_syslog == true %>yes<% else %>no<% end %> 
+direction = out
+path = builtin_syslog
+type = builtin
+args = LOG_LOCAL6 LOG_INFO
+format = string

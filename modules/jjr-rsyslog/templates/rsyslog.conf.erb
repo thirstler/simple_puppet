@@ -1,0 +1,116 @@
+#### MODULES ####
+$ModLoad imuxsock
+$ModLoad imklog
+$ModLoad immark
+
+<% if is_loghost == true %>
+# Provides UDP syslog reception
+$ModLoad imudp
+$UDPServerRun 514
+
+# Provides TCP syslog reception
+$ModLoad imtcp
+$InputTCPServerRun 514
+
+#### GLOBAL DIRECTIVES ####
+
+# Use default timestamp format
+$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat
+
+# File syncing capability is disabled by default. This feature is usually not required,
+# not useful and an extreme performance hit
+#$ActionFileEnableSync on
+
+# Include all config files in /etc/rsyslog.d/
+$IncludeConfig /etc/rsyslog.d/*.conf
+
+##
+# Templates, simple separation of logs by hostname:
+$template MessagesTgt,"/var/log/hosts/%HOSTNAME%/messages"
+$template SecureTgt,"/var/log/hosts/%HOSTNAME%/secure"
+$template MailTgt,"/var/log/hosts/%HOSTNAME%/maillog"
+$template CronTgt,"/var/log/hosts/%HOSTNAME%/cron
+$template NewsTgt,"/var/log/hosts/%HOSTNAME%/spooler
+$template BootTgt,"/var/log/hosts/%HOSTNAME%/boot.log
+
+##
+# Audit logs. LOCAL6.INFO is hijacked by audit logs. You've been warned.
+$template AuditTgt,"/var/log/hosts/%HOSTNAME%/audit.log
+local6.info                                             ~?AuditTgt
+
+#### RULES ####
+
+# Log all kernel messages to the console.
+# Logging much else clutters up the screen.
+#kern.*                                                 /dev/console
+
+# Log anything (except mail) of level info or higher.
+# Don't log private authentication messages!
+*.info;mail.none;authpriv.none;cron.none                ?MessagesTgt
+
+# The authpriv file has restricted access.
+authpriv.*                                              ?SecureTgt
+
+# Log all the mail messages in one place.
+mail.*                                                  -?MailTgt
+
+# Log cron stuff
+cron.*                                                  ?CronTgt
+
+# Everybody gets emergency messages
+*.emerg                                                 /var/log/emergencies
+
+# Save news errors of level crit and higher in a special file.
+uucp,news.crit                                          ?NewsTgt
+
+# Save boot messages also to boot.log
+local7.*                                                ?BootTgt
+
+# A template to for higher precision timestamps + severity logging
+$template SpiceTmpl,"%TIMESTAMP%.%TIMESTAMP:::date-subseconds% %syslogtag% %syslogseverity-text%:%msg:::sp-if-no-1st-sp%%msg:::drop-last-lf%\n"
+
+:programname, startswith, "spice-vdagent"       /var/log/spice-vdagent.log;SpiceTmpl
+<% else %>
+$WorkDirectory /var/lib/rsyslog
+$ActionQueueFileName fwdRule1
+$ActionQueueMaxDiskSpace 1g
+$ActionQueueSaveOnShutdown on
+$ActionQueueType LinkedList
+$ActionResumeRetryCount -1
+*.* <% if syslog_proto == "tcp" %>@@<% else %>@<% end %><%= @syslog_host %>:514
+
+# If the syslog plugin for auditd is running then these are audit messages that
+# we don't want re-logged locally
+local6.info ~
+
+# Log all kernel messages to the console.
+# Logging much else clutters up the screen.
+#kern.*                                                 /dev/console
+
+# Log anything (except mail) of level info or higher.
+# Don't log private authentication messages!
+*.info;mail.none;authpriv.none;cron.none                /var/log/messages
+
+# The authpriv file has restricted access.
+authpriv.*                                              /var/log/secure
+
+# Log all the mail messages in one place.
+mail.*                                                  -/var/log/maillog
+
+# Log cron stuff
+cron.*                                                  /var/log/cron
+
+# Everybody gets emergency messages
+*.emerg                                                 *
+
+# Save news errors of level crit and higher in a special file.
+uucp,news.crit                                          /var/log/spooler
+
+# Save boot messages also to boot.log
+local7.*                                                /var/log/boot.log
+
+# A template to for higher precision timestamps + severity logging
+$template SpiceTmpl,"%TIMESTAMP%.%TIMESTAMP:::date-subseconds% %syslogtag% %syslogseverity-text%:%msg:::sp-if-no-1st-sp%%msg:::drop-last-lf%\n"
+
+:programname, startswith, "spice-vdagent"       /var/log/spice-vdagent.log;SpiceTmpl
+<% end %>
