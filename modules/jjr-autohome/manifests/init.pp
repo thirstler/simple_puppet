@@ -4,7 +4,7 @@ class autohome(
         $remote_path = '/home',
         $nfs_ver = 3)
 {
-    selboolean { 'use_nfs_home_dirs': value => true }
+    selboolean { 'use_nfs_home_dirs': value => on }
     package { 'autofs': ensure => installed }
     service { 'autofs_service':
         name => 'autofs',

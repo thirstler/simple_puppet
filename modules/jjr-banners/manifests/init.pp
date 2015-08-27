@@ -11,6 +11,9 @@
 # Copyright 2015 Jason Russler
 #
 class banners {
+    if ! defined ($global_banner_text) {
+        $global_banner_text = false
+    }
     file { 'issue_config':
         ensure => present,
         path => '/etc/issue',
@@ -18,7 +21,7 @@ class banners {
         group => 'root',
         mode => '0644',
         seltype => 'etc_runtime_t',
-        content => template('banners/issue_net.erb'),
+        content => template('banners/issue_net.erb')
     }
     file { 'issue_net_config':
         ensure => present,
@@ -27,7 +30,7 @@ class banners {
         group => 'root',
         mode => '0644',
         seltype => 'etc_runtime_t',
-        content => template('banners/issue_net.erb'),
+        content => template('banners/issue_net.erb')
     }
 }
 

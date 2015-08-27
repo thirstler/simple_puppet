@@ -1,6 +1,6 @@
 {
   "name": "jjr-rsyslog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "jjr",
   "summary": "Configure a simple (unencrypted) loghost client or server",
   "license": "Apache 2.0",

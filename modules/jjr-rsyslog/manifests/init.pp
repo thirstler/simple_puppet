@@ -26,10 +26,6 @@ class rsyslog (
         name => 'rsyslog',
         ensure => present
     }
-    package { 'audit_rpm':
-        name => 'audit',
-        ensure => present
-    }
     service { 'rsyslog_service':
         name => 'rsyslog',
         ensure => true,

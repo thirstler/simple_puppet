@@ -1,11 +1,11 @@
 {
   "name": "jjr-banners",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "author": "jason.russler@gmail.com",
   "summary": "/etc/issue and /etc/issue.net files",
   "license": "None",
   "source": "https://github.com/thirstler/simple_puppet",
-  "project_page": https://github.com/thirstler/simple_puppet",
+  "project_page": "https://github.com/thirstler/simple_puppet",
   "issues_url": "https://github.com/thirstler/simple_puppet",
   "dependencies": [
     {
