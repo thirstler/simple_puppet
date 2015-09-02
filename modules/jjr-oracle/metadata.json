@@ -1,12 +1,12 @@
 {
-  "name": "jjr-sshd",
-  "version": "1.0.1",
+  "name": "jjr-oracle",
+  "version": "1.0.0",
   "author": "jjr",
-  "summary": "Configure ssh server (good for IPA environments)",
-  "license": "Apache 2.0",
+  "summary": "Configure some settings for oracle database hosts",
+  "license": "Apache-2.0",
   "source": "https://github.com/thirstler/simple_puppet",
   "project_page": "https://github.com/thirstler/simple_puppet",
-  "issues_url": "https://github.com/thirstler/simple_puppet",
+  "issues_url": "https://github.com/thirstler/simple_puppet/issues",
   "dependencies": [
     {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
   ]

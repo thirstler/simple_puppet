@@ -1,7 +1,8 @@
-<% if @global_banner_text -%>
+<% if @global_banner_text != false -%>
 <%= @global_banner_text %>
-Hostname: <%= @hostname %>.<%= @domain %>
+
 <% else -%>
 ***** WARNING *****
 Oh, wait. Nevermind.
+
 <% end -%>

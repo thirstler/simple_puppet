@@ -11,8 +11,10 @@
 # Copyright 2015 Jason Russler
 #
 class banners {
-    if ! defined ($global_banner_text) {
+    if ! $::global_banner_text {
         $global_banner_text = false
+    } else {
+        $global_banner_text = $::global_banner_text
     }
     file { 'issue_config':
         ensure => present,

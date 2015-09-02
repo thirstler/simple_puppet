@@ -1,0 +1,14 @@
+###############################################################################
+# Global configuration is configuration applicable to both the master and 
+# agent daemons. Options for the monitoring infrastructure itself.
+###############################################################################
+[global]
+
+# Hostname of the master server is global
+master_hostname = <%= @master_host %>
+
+# Port (UDP) the master listens on for reports from the agents
+master_target_port = <%= @master_port %>
+
+# TCP port the master listens on for data queries
+master_data_port = 4569

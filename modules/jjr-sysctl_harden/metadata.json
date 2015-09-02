@@ -1,8 +1,8 @@
 {
-  "name": "jjr-banners",
-  "version": "1.0.3",
+  "name": "jjr-sysctl_harden",
+  "version": "1.0.0",
   "author": "jason.russler@gmail.com",
-  "summary": "/etc/issue and /etc/issue.net files",
+  "summary": "Configure various sysctl settings",
   "license": "None",
   "source": "https://github.com/thirstler/simple_puppet",
   "project_page": "https://github.com/thirstler/simple_puppet",
