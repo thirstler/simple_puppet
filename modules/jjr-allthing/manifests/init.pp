@@ -74,13 +74,21 @@ class allthing (
     
     service { 'at_agent': ensure => $agent_state, require => Package['all-thing-agent'] }
     
+    file { '/etc/allthing':
+        ensure => directory,
+        owner => 'root',
+        group => 'root',
+        mode => '700',
+        seltype => 'etc_t'
+    } 
     file { '/etc/allthing/allthing.conf':
         ensure => present,
         owner => 'root',
         group => 'root',
         mode => '0600',
         seltype => 'etc_t',
-        content => template('allthing/allthing.conf.erb')
+        content => template('allthing/allthing.conf.erb'),
+        require => [Package['all-thing-agent'], File['/etc/allthing']]
     }
     
 
