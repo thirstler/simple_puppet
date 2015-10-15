@@ -1,9 +1,9 @@
 {
-  "name": "jjr-rsyslog",
-  "version": "1.0.2",
+  "name": "jjr-resolv",
+  "version": "0.1.2",
   "author": "jjr",
-  "summary": "Configure a simple (unencrypted) loghost client or server",
-  "license": "Apache 2.0",
+  "summary": "Configure /etc/resolv.conf",
+  "license": "GPL 2.0",
   "source": "https://github.com/thirstler/simple_puppet",
   "project_page": "https://github.com/thirstler/simple_puppet",
   "issues_url": "https://github.com/thirstler/simple_puppet",

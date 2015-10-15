@@ -1,0 +1,6 @@
+options timeout:<%= @timeout %> attempts:<%= @attempts %> rotate
+search <%= @search_domains %>
+<% @nameservers.each do |nameserver| -%>
+nameserver <%= nameserver %>
+<% end -%>
+

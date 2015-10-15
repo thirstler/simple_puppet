@@ -49,8 +49,7 @@ class rsyslog (
         group => 'root',
         mode => '0640',
         seltype => 'etc_t',
-        content => template('rsyslog/audisp_syslog.erb'),
-        notify => Service["auditd_service"]
+        content => template('rsyslog/audisp_syslog.erb')
     }
     file { 'syslog_logrotate':
         ensure => present,
