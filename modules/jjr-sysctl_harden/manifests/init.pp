@@ -15,7 +15,7 @@ class sysctl_harden (
     $nf_on_bridges = false
 ) {
 
-    if $::operatingsystemrelease < 7 { $sysctl_cf_file = "/etc/sysctl.conf" }
+    if $::operatingsystemmajrelease < 7 { $sysctl_cf_file = "/etc/sysctl.conf" }
     else { $sysctl_cf_file = "/usr/lib/sysctl.d/00-system.conf" }
 
     if $nf_on_bridges == true { $net_br_val = "1" }

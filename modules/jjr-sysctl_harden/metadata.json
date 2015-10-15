@@ -1,6 +1,6 @@
 {
   "name": "jjr-sysctl_harden",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "jason.russler@gmail.com",
   "summary": "Configure various sysctl settings",
   "license": "None",
