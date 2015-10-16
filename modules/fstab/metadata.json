@@ -1,8 +1,8 @@
 {
-  "name": "jjr-fstab_opts",
+  "name": "jjr-fstab",
   "version": "1.0.0",
   "author": "jjr",
-  "summary": "Add security options to fstab entries",
+  "summary": "Set up the fstab file",
   "license": "None",
   "source": "",
   "project_page": null,

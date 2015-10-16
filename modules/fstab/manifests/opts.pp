@@ -15,7 +15,7 @@
 #
 
 
-class fstab_opts (
+class fstab::opts (
     $root = ['_NULL_'],
     $var = ['_NULL_'],
     $tmp = ['_NULL_'],
@@ -32,7 +32,6 @@ class fstab_opts (
     # unique name.
     define setopt {
         $mntop = split($title, "-")
-        notify {"entering add-fstab-${mntop[0]}-${mntop[1]}": }
         augeas { "add-fstab-${mntop[0]}-${mntop[1]}":
             context => "/files/etc/fstab/*[file = '${mntop[0]}']/",
             changes => [
