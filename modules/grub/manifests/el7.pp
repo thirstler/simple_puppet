@@ -1,0 +1,3 @@
+class grub::el7 {
+
+}
